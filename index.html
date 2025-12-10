@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anas Afzal | Frontend Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- Animation Classes --- */
+        .reveal-node {
+            opacity: 0;
+            transition: all 1s ease-out;
+        }
+
+        .from-bottom {
+            transform: translateY(50px);
+        }
+
+        .from-left {
+            transform: translateX(-100px);
+        }
+
+        .from-right {
+            transform: translateX(100px);
+        }
+
+        .reveal-active {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        /* --- Hero Image Animations --- */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes spinOrbit {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin-orbit {
+            animation: spinOrbit 20s linear infinite;
+        }
+
+        /* --- HOVER & ACTIVE ANIMATION --- */
+        .hover-line {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hover-line::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 5px;
+            left: 0;
+            background-color: #3b82f6;
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+
+        .hover-line:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Active Link Styling (Blue Text + Line) */
+        .active-link {
+            color: #3b82f6 !important;
+            /* Text turns Blue */
+        }
+
+        .active-link::after {
+            transform: scaleX(1) !important;
+            transform-origin: bottom left !important;
+        }
+    </style>
+</head>
+
+<body class="bg-brand-black text-gray-300 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-brand-black/90 backdrop-blur-sm border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 font-bold text-2xl text-white">
+                    Anas<span class="text-brand-blue">Dev</span>.
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home"
+                            class="nav-link hover-line hover:text-brand-blue transition px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="#about"
+                            class="nav-link hover-line hover:text-brand-blue transition px-3 py-2 text-sm font-medium">About</a>
+                        <a href="#skills"
+                            class="nav-link hover-line hover:text-brand-blue transition px-3 py-2 text-sm font-medium">Skills</a>
+                        <!-- UPDATED LINKS -->
+                        <a href="#experience"
+                            class="nav-link hover-line hover:text-brand-blue transition px-3 py-2 text-sm font-medium">Experience</a>
+                        <a href="#education"
+                            class="nav-link hover-line hover:text-brand-blue transition px-3 py-2 text-sm font-medium">Education</a>
+                        <a href="#projects"
+                            class="nav-link hover-line hover:text-brand-blue transition px-3 py-2 text-sm font-medium">Projects</a>
+                        <a href="#contact"
+                            class="bg-brand-blue hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium transition">Contact</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-btn"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium hover:text-brand-blue">Home</a>
+                <a href="#about"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:text-brand-blue">About</a>
+                <a href="#skills"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:text-brand-blue">Skills</a>
+                <!-- UPDATED MOBILE LINKS -->
+                <a href="#experience"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:text-brand-blue">Experience</a>
+                <a href="#education"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:text-brand-blue">Education</a>
+                <a href="#projects"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:text-brand-blue">Projects</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-brand-blue">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+        <div class="absolute top-20 left-0 w-72 h-72 bg-brand-blue/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-0 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+
+            <div class="mb-10 relative inline-block animate-float">
+                <div class="absolute inset-[-15px] border-[2px] border-dotted border-gray-600 rounded-full"></div>
+                <div class="absolute inset-[-15px] animate-spin-orbit rounded-full z-20 pointer-events-none">
+                    <div
+                        class="absolute top-0 left-1/2 -translate-x-1/2 -mt-1.5 w-4 h-4 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,0.8)]">
+                    </div>
+                </div>
+                <div
+                    class="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-brand-blue shadow-2xl shadow-blue-500/20">
+                    <!-- Ensure the image path is correct -->
+                    <img src="anas.jfif" alt="Anas Afzal" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-2 reveal-node from-bottom">
+                Hi, I'm <br class="md:hidden" />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-purple-500">Anas
+                    Afzal</span>
+            </h1>
+
+            <h2 class="text-2xl md:text-4xl font-semibold text-white mb-6 reveal-node from-bottom">
+                I am a Frontend Developer
+            </h2>
+
+            <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto reveal-node from-bottom">
+                Specializing in building exceptional digital experiences.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4 reveal-node from-bottom">
+                <a href="#projects"
+                    class="bg-brand-blue hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-full transition transform hover:scale-105 shadow-lg shadow-blue-500/30">
+                    View Projects
+                </a>
+                <a href="#contact"
+                    class="border border-gray-600 hover:border-white text-white font-semibold py-3 px-8 rounded-full transition hover:bg-white/5">
+                    Contact Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal-node from-bottom">
+                <h2 class="text-3xl font-bold text-white">About Me</h2>
+                <div class="w-16 h-1 bg-brand-blue mx-auto mt-4 rounded"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1 reveal-node from-left">
+                    <p class="text-lg leading-relaxed mb-6">
+                        I am <strong>Anas Afzal</strong>, a dedicated Frontend Developer with ~6 months of experience. I
+                        have a strong foundation in web technologies and a passion for creating interactive, responsive
+                        designs.
+                    </p>
+                    <p class="text-lg leading-relaxed mb-6">
+                        Whether it's debugging complex code or designing a smooth user interface, I love the challenge
+                        of bringing ideas to life on the web.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <div class="p-4 bg-brand-black rounded-lg border border-gray-800 text-center">
+                            <span class="block text-2xl font-bold text-brand-blue">5+</span>
+                            <span class="text-sm text-gray-400">Projects Done</span>
+                        </div>
+                        <div class="p-4 bg-brand-black rounded-lg border border-gray-800 text-center">
+                            <span class="block text-2xl font-bold text-brand-blue">6M</span>
+                            <span class="text-sm text-gray-400">Experience</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 flex justify-center perspective-1000 reveal-node from-right">
+                    <!-- Ensure image path is correct -->
+                    <img src="download.jfif" alt="About"
+                        class="rounded-xl shadow-lg border border-gray-700 transform rotate-6 hover:rotate-0 transition duration-500 ease-in-out cursor-pointer hover:shadow-brand-blue/20">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-brand-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal-node from-bottom">
+                <h2 class="text-3xl font-bold text-white">My Skills</h2>
+                <div class="w-16 h-1 bg-brand-blue mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="reveal-node from-left">
+                    <h3 class="text-xl text-white font-semibold mb-6">Tech Stack</h3>
+                    <div class="grid grid-cols-3 sm:grid-cols-4 gap-4">
+                        <div
+                            class="flex flex-col items-center p-3 bg-brand-dark rounded-lg border border-gray-800 hover:border-brand-blue transition group">
+                            <i class="fab fa-html5 text-3xl text-orange-500 mb-2 group-hover:scale-110 transition"></i>
+                            <span class="text-xs">HTML5</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center p-3 bg-brand-dark rounded-lg border border-gray-800 hover:border-brand-blue transition group">
+                            <i class="fab fa-css3-alt text-3xl text-blue-500 mb-2 group-hover:scale-110 transition"></i>
+                            <span class="text-xs">CSS3</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center p-3 bg-brand-dark rounded-lg border border-gray-800 hover:border-brand-blue transition group">
+                            <i class="fab fa-js text-3xl text-yellow-400 mb-2 group-hover:scale-110 transition"></i>
+                            <span class="text-xs">JS</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center p-3 bg-brand-dark rounded-lg border border-gray-800 hover:border-brand-blue transition group">
+                            <i class="fab fa-react text-3xl text-cyan-400 mb-2 group-hover:scale-110 transition"></i>
+                            <span class="text-xs">React</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center p-3 bg-brand-dark rounded-lg border border-gray-800 hover:border-brand-blue transition group">
+                            <i class="fas fa-wind text-3xl text-teal-400 mb-2 group-hover:scale-110 transition"></i>
+                            <span class="text-xs">Tailwind</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center p-3 bg-brand-dark rounded-lg border border-gray-800 hover:border-brand-blue transition group">
+                            <i class="fab fa-git-alt text-3xl text-red-500 mb-2 group-hover:scale-110 transition"></i>
+                            <span class="text-xs">Git</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center p-3 bg-brand-dark rounded-lg border border-gray-800 hover:border-brand-blue transition group">
+                            <i class="fab fa-github text-3xl text-white mb-2 group-hover:scale-110 transition"></i>
+                            <span class="text-xs">GitHub</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center p-3 bg-brand-dark rounded-lg border border-gray-800 hover:border-brand-blue transition group">
+                            <i class="fas fa-code text-3xl text-blue-400 mb-2 group-hover:scale-110 transition"></i>
+                            <span class="text-xs">VS Code</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal-node from-right">
+                    <h3 class="text-xl text-white font-semibold mb-6">Proficiency</h3>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-300">Frontend Development</span>
+                                <span class="text-sm font-medium text-brand-blue">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2.5">
+                                <div class="bg-brand-blue h-2.5 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-300">Responsive Design</span>
+                                <span class="text-sm font-medium text-brand-blue">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2.5">
+                                <div class="bg-brand-blue h-2.5 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-300">JavaScript Logic</span>
+                                <span class="text-sm font-medium text-brand-blue">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2.5">
+                                <div class="bg-brand-blue h-2.5 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-300">Debugging & Optimization</span>
+                                <span class="text-sm font-medium text-brand-blue">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2.5">
+                                <div class="bg-brand-blue h-2.5 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION (New Standalone Section) -->
+    <section id="experience" class="py-20 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal-node from-bottom">
+                <h2 class="text-3xl font-bold text-white">My Experience</h2>
+                <div class="w-16 h-1 bg-brand-blue mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <!-- Description Side -->
+                <div class="reveal-node from-left">
+                    <h3 class="text-2xl font-bold text-white mb-4">Frontend Development</h3>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        As a specialized Frontend Developer, I am passionate about crafting clean, efficient, and
+                        user-friendly web interfaces. I focus on translating design concepts into functional code,
+                        ensuring that every pixel is perfect and every interaction is smooth.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        My expertise lies in building responsive layouts that work seamlessly across all devices,
+                        optimizing website performance for faster load times, and ensuring cross-browser compatibility.
+                        I enjoy solving complex logic problems with JavaScript and bringing static pages to life.
+                    </p>
+                </div>
+
+                <!-- Timeline Side -->
+                <div class="reveal-node from-right">
+                    <div class="border-l-2 border-gray-800 ml-3 space-y-10">
+                        <div class="relative pl-8">
+                            <div class="absolute -left-[9px] top-0 w-4 h-4 bg-brand-blue rounded-full"></div>
+                            <h4 class="text-lg font-bold text-white">Frontend Developer</h4>
+                            <p class="text-brand-blue text-sm mb-2">Freelance • 2025 - Present</p>
+                            <p class="text-gray-400 text-sm">Designing and developing responsive websites for clients.
+                                Converting PSD/Figma designs to clean HTML/CSS code.</p>
+                        </div>
+                        <div class="relative pl-8">
+                            <div class="absolute -left-[9px] top-0 w-4 h-4 bg-gray-700 rounded-full"></div>
+                            <h4 class="text-lg font-bold text-white">Web Development Intern</h4>
+                            <p class="text-brand-blue text-sm mb-2">Local Tech Co • 6 Months</p>
+                            <p class="text-gray-400 text-sm">Assisted senior developers in fixing UI bugs and
+                                implementing new features using Tailwind CSS.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION (New Standalone Section) -->
+    <section id="education" class="py-20 bg-brand-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal-node from-bottom">
+                <h2 class="text-3xl font-bold text-white">My Education</h2>
+                <div class="w-16 h-1 bg-brand-blue mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="max-w-3xl mx-auto reveal-node from-bottom">
+                <div class="border-l-2 border-gray-800 ml-3 space-y-12">
+                    <div class="relative pl-8">
+                        <div class="absolute -left-[9px] top-0 w-4 h-4 bg-brand-blue rounded-full"></div>
+                        <div
+                            class="bg-brand-dark p-6 rounded-lg border border-gray-800 hover:border-brand-blue transition">
+                            <h4 class="text-xl font-bold text-white">Intermediate (ICS)</h4>
+                            <p class="text-brand-blue text-sm mb-2">Govt. Associate College Liaquatpur • 2023 - 2025</p>
+                            <p class="text-gray-400 mt-2">Specialized in Computer Science, Mathematics, and Physics.
+                                Built a strong foundation in programming logic and algorithms during this period.</p>
+                        </div>
+                    </div>
+                    <div class="relative pl-8">
+                        <div class="absolute -left-[9px] top-0 w-4 h-4 bg-gray-700 rounded-full"></div>
+                        <div
+                            class="bg-brand-dark p-6 rounded-lg border border-gray-800 hover:border-brand-blue transition">
+                            <h4 class="text-xl font-bold text-white">Matriculation</h4>
+                            <p class="text-brand-blue text-sm mb-2">Al Furqan Science High School • 2021 - 2023</p>
+                            <p class="text-gray-400 mt-2">Completed studies in Computer Science, Math, Physics, and
+                                Chemistry with excellent grades.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal-node from-bottom">
+                <h2 class="text-3xl font-bold text-white">Recent Projects</h2>
+                <div class="w-16 h-1 bg-brand-blue mx-auto mt-4 rounded"></div>
+            </div>
+
+            <!-- Grid updated to handle more projects -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div
+                    class="bg-brand-black rounded-xl overflow-hidden border border-gray-800 hover:-translate-y-2 transition duration-300 group reveal-node from-left">
+                    <div class="relative overflow-hidden">
+                        <img src="bebold.png" alt="Project 1"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Bebold</h3>
+                        <p class="text-gray-400 text-sm mb-4">A full-featured shopping platform with cart and checkout
+                            simulation.</p>
+                        <div class="flex gap-2 mb-6">
+                            <span class="px-2 py-1 text-xs bg-gray-800 text-brand-blue rounded">React</span>
+                            <span class="px-2 py-1 text-xs bg-gray-800 text-brand-blue rounded">Tailwind</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://bebold-web.netlify.app/"
+                                class="flex-1 text-center bg-brand-blue/10 hover:bg-brand-blue text-brand-blue hover:text-white transition py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/anasafzal295/bebold"
+                                class="flex-1 text-center bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div
+                    class="bg-brand-black rounded-xl overflow-hidden border border-gray-800 hover:-translate-y-2 transition duration-300 group reveal-node from-bottom">
+                    <div class="relative overflow-hidden">
+                        <img src="download (1).png" alt="Project 2"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">PakShop – Shopping Website</h3>
+                        <p class="text-gray-400 text-sm mb-4">A clean and responsive e-commerce website designed for easy product browsing and smooth shopping experience.</p>
+                        <div class="flex gap-2 mb-6">
+                            <span class="px-2 py-1 text-xs bg-gray-800 text-brand-blue rounded">JavaScript</span>
+                            <span class="px-2 py-1 text-xs bg-gray-800 text-brand-blue rounded">API</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://pakshopweb.netlify.app/"
+                                class="flex-1 text-center bg-brand-blue/10 hover:bg-brand-blue text-brand-blue hover:text-white transition py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/anasafzal295/Pakshop"
+                                class="flex-1 text-center bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div
+                    class="bg-brand-black rounded-xl overflow-hidden border border-gray-800 hover:-translate-y-2 transition duration-300 group reveal-node from-right">
+                    <div class="relative overflow-hidden">
+                        <img src="download (1).jfif" alt="Project 3"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Admin Dashboard</h3>
+                        <p class="text-gray-400 text-sm mb-4">A clean and responsive admin dashboard for easy data management.</p>
+                        <div class="flex gap-2 mb-6">
+                            <span class="px-2 py-1 text-xs bg-gray-800 text-brand-blue rounded">HTML</span>
+                            <span class="px-2 py-1 text-xs bg-gray-800 text-brand-blue rounded">CSS</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://dashboarweb.netlify.app/"
+                                class="flex-1 text-center bg-brand-blue/10 hover:bg-brand-blue text-brand-blue hover:text-white transition py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/anasafzal295/Dashboard"
+                                class="flex-1 text-center bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 (New) -->
+                <div
+                    class="bg-brand-black rounded-xl overflow-hidden border border-gray-800 hover:-translate-y-2 transition duration-300 group reveal-node from-left">
+                    <div class="relative overflow-hidden">
+                        <img src="download (6).jfif" alt="Project 4"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">DoctorCare – Medical Website</h3>
+                        <p class="text-gray-400 text-sm mb-4">A modern and responsive doctor appointment website built with clean UI and smooth user experience.</p>
+                        <div class="flex gap-2 mb-6">
+                            <span class="px-2 py-1 text-xs bg-gray-800 text-brand-blue rounded">JS</span>
+                            <span class="px-2 py-1 text-xs bg-gray-800 text-brand-blue rounded">LocalStorage</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://doctor-websit.netlify.app/"
+                                class="flex-1 text-center bg-brand-blue/10 hover:bg-brand-blue text-brand-blue hover:text-white transition py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/anasafzal295/Doctor--Web"
+                                class="flex-1 text-center bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 (New) -->
+                <!-- <div
+                    class="bg-brand-black rounded-xl overflow-hidden border border-gray-800 hover:-translate-y-2 transition duration-300 group reveal-node from-bottom">
+                    <div class="relative overflow-hidden">
+                        <img src="https://placehold.co/600x400/1e293b/ffffff?text=Landing+Page" alt="Project 5"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Product Landing</h3>
+                        <p class="text-gray-400 text-sm mb-4">High conversion landing page with modern UI animations.
+                        </p>
+                        <div class="flex gap-2 mb-6">
+                            <span class="px-2 py-1 text-xs bg-gray-800 text-brand-blue rounded">Tailwind</span>
+                            <span class="px-2 py-1 text-xs bg-gray-800 text-brand-blue rounded">Responsive</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="flex-1 text-center bg-brand-blue/10 hover:bg-brand-blue text-brand-blue hover:text-white transition py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                            <a href="#"
+                                class="flex-1 text-center bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition py-2 rounded-lg text-sm font-semibold flex items-center justify-center gap-2">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-brand-black">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 reveal-node from-bottom">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white">Get In Touch</h2>
+                <p class="text-gray-400 mt-4">Have a project in mind? Let's work together.</p>
+            </div>
+
+            <div class="bg-brand-dark p-8 rounded-2xl border border-gray-800 shadow-lg">
+                <form id="contact-form" class="space-y-6" action="https://formspree.io/f/xblvzbov" method="POST">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Name</label>
+                            <input type="text" name="name" required
+                                class="w-full bg-brand-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-blue transition"
+                                placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-400 mb-2">Email</label>
+                            <input type="email" name="email" required
+                                class="w-full bg-brand-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-blue transition"
+                                placeholder="your@email.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                        <textarea rows="4" name="message" required
+                            class="w-full bg-brand-black border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-blue transition"
+                            placeholder="Your message..."></textarea>
+                    </div>
+                    <input type="hidden" name="_gotcha" style="display:none" />
+                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+                    <button type="submit"
+                        class="w-full bg-brand-blue hover:bg-blue-600 text-white font-bold py-3 rounded-lg transition transform hover:scale-105">
+                        Send Message
+                    </button>
+                </form>
+                <div id="thankyou-modal"
+                    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
+                    <div
+                        style="background:white; padding:40px 30px; border-radius:15px; text-align:center; max-width:400px; animation:fadeIn 0.4s;">
+                        <h2 style="color:#28a745;">Thank You! ❤️</h2>
+                        <p style="font-size:18px; color:#333;">Aapka message successfully send ho gaya.<br>Hum jald hi
+                            reply karenge!</p>
+                        <button onclick="document.getElementById('thankyou-modal').style.display='none'"
+                            style="margin-top:20px; padding:10px 25px; background:#28a745; color:white; border:none; border-radius:8px; cursor:pointer;">
+                            Close
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-10 pt-6 border-t border-gray-800 flex justify-center space-x-8">
+                    <a href="www.linkedin.com/in/anas-afzal-2a93b638a"
+                        class="text-gray-400 hover:text-white text-2xl transition"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/anasafzal295"
+                        class="text-gray-400 hover:text-white text-2xl transition"><i class="fab fa-github"></i></a>
+                    <a href="https://www.facebook.com/share/1AkDuYvCPV/"
+                        class="text-gray-400 hover:text-white text-2xl transition"><i class="fab fa-facebook"></i></a>
+                    <a href="anasafzal295@gmail.com" class="text-gray-400 hover:text-white text-2xl transition"><i
+                            class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/afzalanasafzal?igsh=bWZ0YWRzYjNmOWQ5"
+                        class="text-gray-400 hover:text-white text-2xl transition"><i class="fab fa-instagram"></i></a>
+                    <!-- <a href="" class="text-gray-400 hover:text-white text-2xl transition"><i class="fab fa-whatsapp"></i></a> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-900 text-center">
+        <p class="text-gray-500 text-sm">© 2024 Anas Afzal. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript code -->
+    <script>
+        // 1. Mobile Menu 
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // 2. Scroll Animation 
+        const revealElements = document.querySelectorAll('.reveal-node');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('reveal-active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // 3. Scroll Spy (Active Link Highlight)
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = "";
+
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach((a) => {
+                a.classList.remove('active-link');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active-link');
+                }
+            });
+        });
+
+        // // 4. Contact Form Logic (FormSubmit with AJAX)
+        // const form = document.getElementById('contact-form');
+        // form.addEventListener('submit', function(e) {
+        //     e.preventDefault(); // Stop Page Reload
+
+        //     // Visual Feedback - Button Text Change
+        //     const btn = form.querySelector('button');
+        //     const originalText = btn.innerText;
+        //     btn.innerText = "Sending...";
+        //     btn.disabled = true;
+
+        //     const formData = new FormData(form);
+
+        //     // Fetch Request to FormSubmit
+        //     fetch("https://formsubmit.co/ajax/anasafzal295@gmail.com", {
+        //         method: "POST",
+        //         body: formData
+        //     })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         alert("Message Sent Successfully!");
+        //         form.reset(); // Clear Form
+        //         btn.innerText = originalText;
+        //         btn.disabled = false;
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //         alert("Something went wrong. Please try again.");
+        //         btn.innerText = originalText;
+        //         btn.disabled = false;
+        //     });
+        // });
+
+        // Tailwind Config
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            black: '#020617',
+                            blue: '#3b82f6',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+
+
+
+
+        // <!------------------- AJAX SCRIPT (sabse neeche laga do) ------------------->
+
+        const form = document.getElementById('contactForm');
+        const modal = document.getElementById('thankyou-modal');
+        const submitBtn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();                    // ← redirection rok di
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending...';
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    modal.style.display = 'flex';      // ← Thank you modal dikhao
+                    form.reset();
+                    submitBtn.innerHTML = 'Sent ✅';
+                } else {
+                    alert('Oops! Kuch galat ho gaya. Dobara try karein.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Send Message';
+                }
+            } catch (err) {
+                alert('Internet issue hai. Check kar lein.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Send Message';
+            }
+        });
+
+    </script>
+</body>
+
+</html>
